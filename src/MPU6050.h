@@ -23,12 +23,12 @@ class MPU6050 {
 
     private:
         int address;
-        float AccDivident = 16384;
-        float GyroDivident = 131;
+        float AccDivisor = 16384;
+        float GyroDivisor = 131;
         float deg2rad = M_PI/180;
 
-        
-        float GyroOfferX = 0; float GyroOfferY = 0; float GyroOfferZ = 0;
+
+        float GyroOffsetX = 0; float GyroOffsetY = 0; float GyroOffsetZ = 0;
 
         unsigned long LastMeasurementTime = 0;
         double TimeElapsed;

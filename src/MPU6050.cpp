@@ -38,9 +38,9 @@ void MPU6050::read() {
     Wire.endTransmission(false);
     Wire.requestFrom(address, 6, true);
 
-    AccX = (Wire.read() << 8 | Wire.read() ) / AccDivident;
-    AccY = (Wire.read() << 8 | Wire.read() ) / AccDivident;
-    AccZ = (Wire.read() << 8 | Wire.read() ) / AccDivident;
+    AccX = (Wire.read() << 8 | Wire.read() ) / AccDivisor;
+    AccY = (Wire.read() << 8 | Wire.read() ) / AccDivisor;
+    AccZ = (Wire.read() << 8 | Wire.read() ) / AccDivisor;
 
 
     TimeElapsed = (double) (micros() - LastMeasurementTime) / 1000000;
@@ -52,9 +52,9 @@ void MPU6050::read() {
     Wire.requestFrom(address, 6, true);
 
 
-    GyroX = ((Wire.read() << 8 | Wire.read() ) / GyroDivident) * deg2rad - GyroOfferX;
-    GyroY = ((Wire.read() << 8 | Wire.read() ) / GyroDivident) * deg2rad - GyroOfferY;
-    GyroZ = ((Wire.read() << 8 | Wire.read() ) / GyroDivident) * deg2rad - GyroOfferZ;
+    GyroX = ((Wire.read() << 8 | Wire.read() ) / GyroDivisor) * deg2rad - GyroOffsetX;
+    GyroY = ((Wire.read() << 8 | Wire.read() ) / GyroDivisor) * deg2rad - GyroOffsetY;
+    GyroZ = ((Wire.read() << 8 | Wire.read() ) / GyroDivisor) * deg2rad - GyroOffsetZ;
     
     gyroAngle.addEuler(GyroX*TimeElapsed, GyroY*TimeElapsed, GyroZ*TimeElapsed);
 }
@@ -73,14 +73,14 @@ void MPU6050::FindGyroOffset(int samples, int delay_between_samples) {
         Wire.endTransmission(false);
         Wire.requestFrom(address, 6, true);
 
-        gyroSumX += ((Wire.read() << 8 | Wire.read() ) / GyroDivident) * deg2rad;
-        gyroSumY += ((Wire.read() << 8 | Wire.read() ) / GyroDivident) * deg2rad;
-        gyroSumZ += ((Wire.read() << 8 | Wire.read() ) / GyroDivident) * deg2rad;
+        gyroSumX += ((Wire.read() << 8 | Wire.read() ) / GyroDivisor) * deg2rad;
+        gyroSumY += ((Wire.read() << 8 | Wire.read() ) / GyroDivisor) * deg2rad;
+        gyroSumZ += ((Wire.read() << 8 | Wire.read() ) / GyroDivisor) * deg2rad;
 
 
         delay(delay_between_samples);
     }
-    GyroOfferX = gyroSumX / samples;
-    GyroOfferY = gyroSumY / samples;
-    GyroOfferZ = gyroSumZ / samples;
+    GyroOffsetX = gyroSumX / samples;
+    GyroOffsetY = gyroSumY / samples;
+    GyroOffsetZ = gyroSumZ / samples;
 }
