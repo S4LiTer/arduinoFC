@@ -18,7 +18,6 @@ void quaternion::addEuler(float X, float Y, float Z) {
     j = new_j;
     k = new_k;
 
-    cout << "R: " << R << ", i: " << i << ", j: " << j << ", k: " << k <<endl;
     delete[] q;
 }
 
@@ -51,3 +50,4 @@ float* quaternion::GetEuler() {
 
     return angles;
 }
+
