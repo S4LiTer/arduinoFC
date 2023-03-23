@@ -42,6 +42,9 @@ void MPU6050::read() {
     AccY = (Wire.read() << 8 | Wire.read() ) / AccDivisor;
     AccZ = (Wire.read() << 8 | Wire.read() ) / AccDivisor;
 
+    acc_angle_X = atan( AccX / sqrt( pow(AccY,2)+pow(AccZ, 2) ) );
+    acc_angle_Y = atan( AccY / sqrt( pow(AccX,2)+pow(AccZ, 2) ) );
+
 
     TimeElapsed = (double) (micros() - LastMeasurementTime) / 1000000;
     LastMeasurementTime = micros();

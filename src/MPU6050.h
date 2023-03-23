@@ -21,12 +21,12 @@ class MPU6050 {
         float AccX, AccY, AccZ;
         float GyroX, GyroY, GyroZ;
 
+        float acc_angle_X; float acc_angle_Y;
     private:
         int address;
         float AccDivisor = 16384;
         float GyroDivisor = 131;
         float deg2rad = M_PI/180;
-
 
         float GyroOffsetX = 0; float GyroOffsetY = 0; float GyroOffsetZ = 0;
 
