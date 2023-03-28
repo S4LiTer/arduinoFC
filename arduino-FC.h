@@ -1,10 +1,8 @@
 #ifndef ARDUINOFC
 #define ARDUINOFC
 
-
-#include "quaternion.h"
-#include "src/MPU6050.h"
-#include "src/MPU6050.cpp"
+#include "src/MPU.h"
+#include "src/MPU.cpp"
 
 
 #endif

@@ -3,9 +3,9 @@ Allows usage of arduino as complex flight controller. Works with MPU6050/9250
 
 ## TODO list
 - [x] Implement quaternions
-- [ ] Reading from MPU-6050
-- [ ] Automatic calibration in MPU-6050
-- [ ] Complementary filter
+- [x] Reading from MPU-6050
+- [x] Automatic calibration in MPU-6050
+- [x] Complementary filter
 - [ ] Hover ability
 
 ## goals
